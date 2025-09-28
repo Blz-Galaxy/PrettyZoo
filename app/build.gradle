@@ -132,7 +132,7 @@ task releaseJarZip(dependsOn: distZip) {
             println "macOsX jar zip release ok"
             return
         }
-    ｝
+    }
 }
 
 dependencies {
