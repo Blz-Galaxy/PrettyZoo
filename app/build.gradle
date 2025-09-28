@@ -47,7 +47,7 @@ jlink {
     forceMerge("jackson", "log4j-api")
     mergedModule {
         // 添加需要的 requires
-        requires = ['org.slf4j']
+        requires 'org.slf4j'
     }
     launcher {
         name = 'prettyZoo'
