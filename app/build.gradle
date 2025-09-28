@@ -106,7 +106,7 @@ task releaseWinZip(type: Zip, dependsOn: jpackage) {
 }
 
 // 修正后的 releaseJarZip 任务，使用 doLast，且加入调试信息
-task releaseJarZip(dependsOn: distZip) {
+task releaseJarZip(dependsOn: [distZip, jpackage]) {
     doLast {
         def os = org.gradle.internal.os.OperatingSystem.current()
         def zipFile = file("${buildDir}/distributions/app-${version}.zip")
