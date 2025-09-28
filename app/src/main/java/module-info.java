@@ -1,4 +1,6 @@
 open module app.main {
+    exports cc.cc1234;
+    
     requires javafx.fxml;
     requires javafx.graphics;
     requires javafx.controls;
