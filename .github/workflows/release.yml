@@ -22,10 +22,10 @@ jobs:
 
       - name: Build
         run: |
-        ./gradlew app:releaseJarZip
-        ls app/build/distributions/
-        ls app/build/jpackage/
-        
+          ./gradlew app:releaseJarZip
+          ls app/build/distributions/
+          ls app/build/jpackage/
+
       - name: Release-ubuntu
         uses: softprops/action-gh-release@v1
         with:
