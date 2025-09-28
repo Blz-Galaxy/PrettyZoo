@@ -48,7 +48,7 @@ jlink {
     mergedModule {
         // 添加需要的 requires
         requires = ['org.slf4j']
-    ｝
+    }
     launcher {
         name = 'prettyZoo'
         jvmArgs = runArgsValue
