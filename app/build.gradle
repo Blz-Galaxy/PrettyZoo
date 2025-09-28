@@ -115,17 +115,17 @@ task releaseJarZip(dependsOn: [distZip, jpackage]) {
         println "releaseJarZip: os.name=${os.name}, linux=${os.linux}, windows=${os.windows}, macOsX=${os.macOsX}"
         println "zipFile.exists: ${zipFile.exists()}, zipFile: $zipFile"
         if (os.windows) {
-            def ok = zipFile.renameTo(new File(targetDir, "prettyZoo-win-java17.zip"))
+            def ok = zipFile.renameTo(new File(targetDir, "prettyZoo-win-java18.zip"))
             println "windows jar zip release ok? $ok"
             return
         }
         if (os.linux) {
-            def ok = zipFile.renameTo(new File(targetDir, "prettyZoo-linux-java17.zip"))
+            def ok = zipFile.renameTo(new File(targetDir, "prettyZoo-linux-java18.zip"))
             println "linux jar zip release ok? $ok"
             return
         }
         if (os.macOsX) {
-            def ok = zipFile.renameTo(new File(targetDir, "prettyZoo-mac-java17.zip"))
+            def ok = zipFile.renameTo(new File(targetDir, "prettyZoo-mac-java18.zip"))
             println "macOsX jar zip release ok? $ok"
             return
         }
