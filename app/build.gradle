@@ -45,6 +45,10 @@ jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     addExtraDependencies("javafx")
     forceMerge("jackson", "log4j-api")
+    mergedModule {
+        // 添加需要的 requires
+        requires = ['org.slf4j']
+    ｝
     launcher {
         name = 'prettyZoo'
         jvmArgs = runArgsValue
