@@ -105,33 +105,31 @@ task releaseWinZip(type: Zip, dependsOn: jpackage) {
     }
 }
 
+// 修正后的 releaseJarZip 任务，使用 doLast，且加入调试信息
 task releaseJarZip(dependsOn: distZip) {
     doLast {
         def os = org.gradle.internal.os.OperatingSystem.current()
-        println "=== OperatingSystem.current() 信息 ==="
-        println "Name: ${os.name}"
-        println "isWindows: ${os.windows}"
-        println "isLinux: ${os.linux}"
-        println "isMacOsX: ${os.macOsX}"
-        println "toString: ${os.toString()}"
-        println "Class: ${os.class}"
-        println "==================================="
-    
+        def zipFile = file("${buildDir}/distributions/app-${version}.zip")
+        def targetDir = file("${buildDir}/jpackage")
+        targetDir.mkdirs()
+        println "releaseJarZip: os.name=${os.name}, linux=${os.linux}, windows=${os.windows}, macOsX=${os.macOsX}"
+        println "zipFile.exists: ${zipFile.exists()}, zipFile: $zipFile"
         if (os.windows) {
-            file("${buildDir}/distributions/app-${version}.zip").renameTo("${buildDir}/jpackage/prettyZoo-win-java17.zip")
-            println "windows jar zip release ok"
+            def ok = zipFile.renameTo(new File(targetDir, "prettyZoo-win-java17.zip"))
+            println "windows jar zip release ok? $ok"
             return
         }
         if (os.linux) {
-            file("${buildDir}/distributions/app-${version}.zip").renameTo("${buildDir}/jpackage/prettyZoo-linux-java17.zip")
-            println "linux jar zip release ok"
+            def ok = zipFile.renameTo(new File(targetDir, "prettyZoo-linux-java17.zip"))
+            println "linux jar zip release ok? $ok"
             return
         }
         if (os.macOsX) {
-            file("${buildDir}/distributions/app-${version}.zip").renameTo("${buildDir}/jpackage/prettyZoo-mac-java17.zip")
-            println "macOsX jar zip release ok"
+            def ok = zipFile.renameTo(new File(targetDir, "prettyZoo-mac-java17.zip"))
+            println "macOsX jar zip release ok? $ok"
             return
         }
+        println "not matched any OS, os.name=${os.name}, linux=${os.linux}, windows=${os.windows}, macOsX=${os.macOsX}"
     }
 }
 

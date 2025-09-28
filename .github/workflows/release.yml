@@ -21,8 +21,11 @@ jobs:
           settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: Build
-        run: ./gradlew app:releaseJarZip
-
+        run: |
+        ./gradlew app:releaseJarZip
+        ls app/build/distributions/
+        ls app/build/jpackage/
+        
       - name: Release-ubuntu
         uses: softprops/action-gh-release@v1
         with:
