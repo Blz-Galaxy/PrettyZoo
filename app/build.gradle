@@ -106,22 +106,33 @@ task releaseWinZip(type: Zip, dependsOn: jpackage) {
 }
 
 task releaseJarZip(dependsOn: distZip) {
-    def os = org.gradle.internal.os.OperatingSystem.current()
-    if (os.windows) {
-        file("${buildDir}/distributions/app-${version}.zip").renameTo("${buildDir}/jpackage/prettyZoo-win-java17.zip")
-        println "windows jar zip release ok"
-        return
-    }
-    if (os.linux) {
-        file("${buildDir}/distributions/app-${version}.zip").renameTo("${buildDir}/jpackage/prettyZoo-linux-java17.zip")
-        println "linux jar zip release ok"
-        return
-    }
-    if (os.macOsX) {
-        file("${buildDir}/distributions/app-${version}.zip").renameTo("${buildDir}/jpackage/prettyZoo-mac-java17.zip")
-        println "macOsX jar zip release ok"
-        return
-    }
+    doLast {
+        def os = org.gradle.internal.os.OperatingSystem.current()
+        println "=== OperatingSystem.current() 信息 ==="
+        println "Name: ${os.name}"
+        println "isWindows: ${os.windows}"
+        println "isLinux: ${os.linux}"
+        println "isMacOsX: ${os.macOsX}"
+        println "toString: ${os.toString()}"
+        println "Class: ${os.class}"
+        println "==================================="
+    
+        if (os.windows) {
+            file("${buildDir}/distributions/app-${version}.zip").renameTo("${buildDir}/jpackage/prettyZoo-win-java17.zip")
+            println "windows jar zip release ok"
+            return
+        }
+        if (os.linux) {
+            file("${buildDir}/distributions/app-${version}.zip").renameTo("${buildDir}/jpackage/prettyZoo-linux-java17.zip")
+            println "linux jar zip release ok"
+            return
+        }
+        if (os.macOsX) {
+            file("${buildDir}/distributions/app-${version}.zip").renameTo("${buildDir}/jpackage/prettyZoo-mac-java17.zip")
+            println "macOsX jar zip release ok"
+            return
+        }
+    ｝
 }
 
 dependencies {
