@@ -21,7 +21,7 @@ jobs:
           settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: Build
-        run: ./gradlew app:jpackage
+        run: ./gradlew app:releaseJarZip
 
       - name: Release-ubuntu
         uses: softprops/action-gh-release@v1
@@ -29,6 +29,7 @@ jobs:
           files: |
             app/build/jpackage/*.rpm
             app/build/jpackage/*.deb
+            app/build/jpackage/*.zip
           draft: true
           fail_on_unmatched_files: true
         env:
